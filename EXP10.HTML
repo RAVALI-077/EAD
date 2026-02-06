@@ -1,0 +1,43 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <title>College Website</title>
+    <style>
+        body { margin: 0; font-family: Arial; }
+
+        header { background: blue; color: white; padding: 10px; text-align: center; }
+
+        nav { background: gray; text-align: center; }
+        nav a { color: white; padding: 10px; display: inline-block; text-decoration: none; }
+        nav a:hover { background: black; }
+
+        .content { display: flex; gap: 10px; padding: 10px; }
+        .box { flex: 1; background: lightblue; padding: 15px; }
+
+        footer { background: blue; color: white; text-align: center; padding: 10px; }
+
+        @media (max-width: 600px) {
+            .content { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<header>CBIT College</header>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">Courses</a>
+    <a href="#">Contact</a>
+</nav>
+
+<div class="content">
+    <div class="box">About</div>
+    <div class="box">Departments</div>
+    <div class="box">Facilities</div>
+</div>
+
+<footer>© 2026 CBIT College</footer>
+
+</body>
+</html>
