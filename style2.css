@@ -1,0 +1,41 @@
+ body
+ {
+    font-family: arial,sans-serif;
+    background-color: brown;
+ }
+ .box
+ {
+    width: 350px;
+    margin:80px auto;
+    pading : 20px;
+    background: white;
+    background-radius: 8px;
+ }
+ label{
+    display :block;
+    margin-top:10px;
+ }
+ input,textarea{
+    width:100%;
+    padding :8px;
+    margin-top:5px;
+    margin-bottom:10px;
+ }
+ textarea{
+    height;100px;
+ }
+ input :focus,textarea:focus
+ {
+    border : 2px solid biue;
+    outline:none;
+ }
+ button{
+    width : 100%;
+    padding :8px;
+    background : green;
+    color: white;
+    border:none;
+ }
+ button :hover{
+    background :darkgreen;
+ }

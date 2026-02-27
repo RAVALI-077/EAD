@@ -1,0 +1,88 @@
+
+<html>
+<head>
+  <title>Simple Login</title>
+  <style>
+    body {
+      font-family: Arial;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #e9ffee;
+      margin: 0;
+    }
+    .box {
+      background: rgb(255, 153, 153);
+      padding: 30px;
+      width: 300px;
+      border-radius: 25px;
+      box-shadow: 0 0 10px gray;
+    }
+    input {
+      width: 90%;
+      padding: 8px;
+      margin: 5px;
+      border-radius: 5px;
+    }
+    button {
+      width: 60%;
+      padding: 8px;
+      align-self: center;
+      margin: 5px;
+      background: rgb(49, 49, 255);
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:disabled {
+      background: gray;
+    }
+    p {
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="box">
+  <h3>Login</h3>
+
+  <input type="text" id="user" placeholder="Username">
+  <input type="password" id="pass" placeholder="Password">
+  <button onclick="checkLogin()" id="btn">Login</button>
+
+  <p id="msg"></p>
+  <p id="attempt"></p>
+</div>
+
+<script>
+  let attempts = 0;
+  let max = 3;
+
+  function checkLogin() {
+    let u = document.getElementById("user").value;
+    let p = document.getElementById("pass").value;
+
+    attempts++;
+
+    if (u === "admin" && p === "123") {
+      document.getElementById("msg").innerHTML = "Login Successful";
+      document.getElementById("attempt").innerHTML = 
+        "Total Attempts: " + attempts;
+    } else {
+      document.getElementById("msg").innerHTML = "Wrong Username or Password";
+      document.getElementById("attempt").innerHTML = 
+        "Attempts: " + attempts + " / " + max;
+    }
+
+    if (attempts >= max) {
+      document.getElementById("btn").disabled = true;
+      document.getElementById("msg").innerHTML = 
+        "Too many attempts. Login disabled.";
+    }
+  }
+</script>
+</body>
+</html>
