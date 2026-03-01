@@ -1,0 +1,106 @@
+
+<html>
+<head>
+    <title>Number Analyzer Dashboard</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #e8f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 350px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        button {
+            background: blue;
+            color: white;
+            border: none;
+        }
+
+        #output {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Number Analyzer</h2>
+
+    <input type="number" id="number" placeholder="Enter a Number">
+    <button onclick="analyzeNumber()">Analyze</button>
+
+    <div id="output"></div>
+</div>
+
+<script>
+
+    function isPalindrome(num) {
+        let str = num.toString();
+        let reversed = str.split('').reverse().join('');
+        return str === reversed;
+    }
+
+    function isArmstrong(num) {
+        let sum = 0;
+        let temp = num;
+        let digits = num.toString().length;
+
+        while (temp > 0) {
+            let digit = temp % 10;
+            sum += Math.pow(digit, digits);
+            temp = Math.floor(temp / 10);
+        }
+
+        return sum === num;
+    }
+
+    function isPrime(num) {
+        if (num <= 1) return false;
+        for (let i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i === 0) return false;
+        }
+        return true;
+    }
+
+    function factorial(num) {
+        if (num < 0) return "Not defined";
+        let fact = 1;
+        for (let i = 1; i <= num; i++) {
+            fact *= i;
+        }
+        return fact;
+    }
+
+    function analyzeNumber() {
+
+        let num = parseInt(document.getElementById("number").value);
+        let output = document.getElementById("output");
+
+        output.innerHTML = `
+            Palindrome: ${isPalindrome(num) ? "Yes" : "No"} <br>
+            Armstrong: ${isArmstrong(num) ? "Yes" : "No"} <br>
+            Prime: ${isPrime(num) ? "Yes" : "No"} <br>
+            Factorial: ${factorial(num)}
+        `;
+    }
+
+</script>
+
+</body>
+</html>

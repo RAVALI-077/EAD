@@ -1,0 +1,127 @@
+
+<html>
+<head>
+    <title>Smart Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 350px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            background-color: gray;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+
+        /* Media Query for Mobile */
+        @media (max-width: 500px) {
+            .login-container {
+                width: 90%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-container">
+    <h2>Login</h2>
+
+    <input type="text" id="username" placeholder="Enter Username">
+    <input type="password" id="password" placeholder="Enter Password">
+    <button id="loginBtn">Login</button>
+
+    <p class="error" id="errorMsg"></p>
+</div>
+
+<script>
+
+    function loginAttemptTracker() {
+        let attempts = 0;
+
+        return function() {
+            attempts++;
+            return attempts;
+        }
+    }
+
+    const trackAttempts = loginAttemptTracker();
+
+    const loginBtn = document.getElementById("loginBtn");
+    const errorMsg = document.getElementById("errorMsg");
+
+    loginBtn.addEventListener("click", function() {
+
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value;
+
+        if (username === "") {
+            errorMsg.textContent = "Username cannot be empty!";
+            return;
+        }
+
+        if (password.length < 6) {
+            errorMsg.textContent = "Password must be at least 6 characters!";
+            return;
+        }
+
+        const correctUser = "admin";
+        const correctPass = "123456";
+
+        if (username === correctUser && password === correctPass) {
+            errorMsg.style.color = "green";
+            errorMsg.textContent = "Login Successful!";
+            loginBtn.disabled = true;
+        } else {
+            const attemptCount = trackAttempts();
+            errorMsg.style.color = "red";
+            errorMsg.textContent = "Invalid Credentials! Attempt " + attemptCount + " of 3";
+
+            if (attemptCount >= 3) {
+                loginBtn.disabled = true;
+                errorMsg.textContent = "Account Locked! Maximum attempts reached.";
+            }
+        }
+
+    });
+
+</script>
+
+</body>
+</html>

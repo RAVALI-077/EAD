@@ -1,0 +1,108 @@
+
+<html>
+<head>
+    <title>Advanced Calculator</title>
+    <style>
+        body {
+            font-family: Arial;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .calculator {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+        }
+
+        button {
+            background: green;
+            color: white;
+            border: none;
+        }
+
+        #result {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+    <h2>Calculator</h2>
+
+    <input type="number" id="num1" placeholder="Enter First Number">
+    <input type="number" id="num2" placeholder="Enter Second Number">
+
+    <select id="operation">
+        <option value="add">+</option>
+        <option value="subtract">−</option>
+        <option value="multiply">×</option>
+        <option value="divide">÷</option>
+    </select>
+
+    <button id="calcBtn">Calculate</button>
+
+    <p id="result"></p>
+</div>
+
+<script>
+
+    // Arrow Functions
+    const add = (a, b) => a + b;
+    const subtract = (a, b) => a - b;
+    const multiply = (a, b) => a * b;
+    const divide = (a, b) => {
+        if (b === 0) {
+            return "Cannot divide by zero!";
+        }
+        return a / b;
+    };
+
+    // Main function using callback
+    function calculate(num1, num2, operationCallback) {
+        return operationCallback(num1, num2);
+    }
+
+    document.getElementById("calcBtn").addEventListener("click", function() {
+
+        let num1 = parseFloat(document.getElementById("num1").value);
+        let num2 = parseFloat(document.getElementById("num2").value);
+        let operation = document.getElementById("operation").value;
+
+        let result;
+
+        switch(operation) {
+            case "add":
+                result = calculate(num1, num2, add);
+                break;
+            case "subtract":
+                result = calculate(num1, num2, subtract);
+                break;
+            case "multiply":
+                result = calculate(num1, num2, multiply);
+                break;
+            case "divide":
+                result = calculate(num1, num2, divide);
+                break;
+        }
+
+        document.getElementById("result").textContent = "Result: " + result;
+    });
+
+</script>
+
+</body>
+</html>

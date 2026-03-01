@@ -1,0 +1,97 @@
+
+<html>
+<head>
+    <title>String Processor Tool</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f4f6f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        button {
+            background-color: purple;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #output {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>String Processor Tool</h2>
+
+    <input type="text" id="sentence" placeholder="Enter a sentence">
+    <button onclick="processString()">Process</button>
+
+    <div id="output"></div>
+</div>
+
+<script>
+
+    // Anonymous Function for Reverse
+    const reverseString = function(str) {
+        return str.split("").reverse().join("");
+    };
+    const countVowels = (str) => {
+        let count = 0;
+        let vowels = "aeiouAEIOU";
+        str.split("").forEach(char => {
+            if (vowels.includes(char)) {
+                count++;
+            }
+        });
+        return count;
+    };
+
+    
+    const longestWord = function(str) {
+        let words = str.split(" ");
+        let longest = "";
+        words.forEach(word => {
+            if (word.length > longest.length) {
+                longest = word;
+            }
+        });
+        return longest;
+    };
+
+    function processString() {
+
+        let sentence = document.getElementById("sentence").value;
+        let output = document.getElementById("output");
+
+        output.innerHTML = `
+            Reverse String: ${reverseString(sentence)} <br>
+            Vowel Count: ${countVowels(sentence)} <br>
+            Longest Word: ${longestWord(sentence)} <br>
+            Uppercase: ${sentence.toUpperCase()}
+        `;
+    }
+
+</script>
+
+</body>
+</html>
